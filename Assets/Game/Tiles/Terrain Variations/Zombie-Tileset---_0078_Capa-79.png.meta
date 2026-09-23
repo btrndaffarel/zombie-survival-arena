@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 39d9f385cd3888f409ea7d82bb13f917
+guid: 439d69805ed2b0e4f89b1c7e912d5340
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1046925277846477440
-    second: Zombie-Tileset---_0080_Capa-81_0
+      213: 2621257775803237152
+    second: Zombie-Tileset---_0078_Capa-79_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Zombie-Tileset---_0080_Capa-81_0
+      name: Zombie-Tileset---_0078_Capa-79_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0856593b1039871f0800000000000000
-      internalID: -1046925277846477440
+      spriteID: 0238b7f1f04906420800000000000000
+      internalID: 2621257775803237152
       vertices: []
       indices: 
       edges: []
@@ -140,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -150,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Zombie-Tileset---_0080_Capa-81_0: -1046925277846477440
+      Zombie-Tileset---_0078_Capa-79_0: 2621257775803237152
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
