@@ -19950,6 +19950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f247f83de861d4c9a5ed2ba37cf156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  walkSound: {fileID: 8300000, guid: e01cd5c416ff43fea0faa26e69e0d27e, type: 3}
   moveSpeed: 5
 --- !u!114 &1311898538
 MonoBehaviour:
@@ -51534,6 +51535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b03030a7c4a3de4bbc742ca2edd49c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
+  shotSound: {fileID: 8300000, guid: 19b9962ad79d4372bf0bb05e149791f6, type: 3}
   bulletPrefab: {fileID: 13222152666190296, guid: 8fca3badf616499498ee1030595e13e4, type: 3}
   firePoint: {fileID: 143550445}
   fireRate: 0.3

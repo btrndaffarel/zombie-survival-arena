@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83357cf4d3d98484788fadafe50f0da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  arrivalSound: {fileID: 8300000, guid: ba4d9e97306146d78fb9b8e631ff79b7, type: 3}
   moveSpeed: 2.5
   stopDistance: 1.2
 --- !u!114 &1967544252023696865
