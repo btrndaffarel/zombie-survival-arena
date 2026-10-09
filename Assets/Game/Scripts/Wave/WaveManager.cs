@@ -1,10 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro; 
 
 public class WaveManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private EnemySpawner enemySpawner;
+
+    [Header("UI Settings")]
+    [SerializeField] private Image batteryImageDisplay; 
+    [SerializeField] private Sprite[] batterySprites;   
+    [SerializeField] private TMP_Text zombieCountText;  
 
     [Header("Wave Settings")]
     [SerializeField] private int maxWaves = 3;
@@ -34,34 +41,22 @@ public class WaveManager : MonoBehaviour
     {
         currentWave++;
 
-        int enemyCount =
-            startingEnemyCount +
-            ((currentWave - 1) * enemyIncreasePerWave);
-
+        int enemyCount = startingEnemyCount + ((currentWave - 1) * enemyIncreasePerWave);
         enemiesRemaining = enemyCount;
+        UpdateBatteryUI();
+        UpdateZombieCounterUI();
 
-        Debug.Log(
-            "===== WAVE " +
-            currentWave +
-            " DIMULAI ====="
-        );
-
-        Debug.Log(
-            "Jumlah Zombie: " +
-            enemyCount
-        );
-
+        Debug.Log("===== WAVE " + currentWave + " DIMULAI =====");
+        Debug.Log("Jumlah Zombie: " + enemyCount);
         isSpawning = true;
 
         for (int i = 0; i < enemyCount; i++)
         {
-            GameObject enemy =
-                enemySpawner.SpawnEnemy();
+            GameObject enemy = enemySpawner.SpawnEnemy();
 
             if (enemy != null)
             {
-                EnemyHealth enemyHealth =
-                    enemy.GetComponent<EnemyHealth>();
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
 
                 if (enemyHealth != null)
                 {
@@ -69,9 +64,7 @@ public class WaveManager : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(
-                spawnInterval
-            );
+            yield return new WaitForSeconds(spawnInterval);
         }
 
         isSpawning = false;
@@ -82,23 +75,24 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void HandleEnemyDied(
-        EnemyHealth enemy
-    )
+    private void HandleEnemyDied(EnemyHealth enemy)
     {
         enemy.OnDied -= HandleEnemyDied;
 
         enemiesRemaining--;
 
-        Debug.Log(
-            "Zombie Remaining: " +
-            enemiesRemaining
-        );
+        int coinsEarned = currentWave * 5;
 
-        if (
-            enemiesRemaining <= 0 &&
-            !isSpawning
-        )
+        if (CoinManager.Instance != null)
+        {
+            CoinManager.Instance.AddCoins(coinsEarned);
+        }
+
+        UpdateZombieCounterUI();
+
+        Debug.Log("Zombie Mati! Dapet " + coinsEarned + " koin. Sisa Zombie: " + enemiesRemaining);
+
+        if (enemiesRemaining <= 0 && !isSpawning)
         {
             WaveComplete();
         }
@@ -109,44 +103,48 @@ public class WaveManager : MonoBehaviour
         if (waitingForNextWave)
             return;
 
-        Debug.Log(
-            "===== WAVE " +
-            currentWave +
-            " COMPLETE ====="
-        );
+        Debug.Log("===== WAVE " + currentWave + " COMPLETE =====");
 
         if (currentWave >= maxWaves)
         {
-            Debug.Log(
-                "SEMUA WAVE TESTING SELESAI!"
-            );
-
+            Debug.Log("SEMUA WAVE TESTING SELESAI!");
             return;
         }
 
-        StartCoroutine(
-            NextWaveCountdown()
-        );
+        StartCoroutine(NextWaveCountdown());
     }
 
     private IEnumerator NextWaveCountdown()
     {
         waitingForNextWave = true;
 
-        Debug.Log(
-            "Wave berikutnya dalam " +
-            timeBetweenWaves +
-            " detik..."
-        );
+        Debug.Log("Wave berikutnya dalam " + timeBetweenWaves + " detik...");
 
-        yield return new WaitForSeconds(
-            timeBetweenWaves
-        );
+        yield return new WaitForSeconds(timeBetweenWaves);
 
         waitingForNextWave = false;
 
-        StartCoroutine(
-            StartNextWave()
-        );
+        StartCoroutine(StartNextWave());
+    }
+
+    private void UpdateBatteryUI()
+    {
+        if (batteryImageDisplay == null || batterySprites == null || batterySprites.Length == 0)
+            return;
+
+        int spriteIndex = currentWave - 1;
+
+        if (spriteIndex >= 0 && spriteIndex < batterySprites.Length)
+        {
+            batteryImageDisplay.sprite = batterySprites[spriteIndex];
+        }
+    }
+
+    private void UpdateZombieCounterUI()
+    {
+        if (zombieCountText != null)
+        {
+            zombieCountText.text = "Zombies: " + enemiesRemaining;
+        }
     }
 }
