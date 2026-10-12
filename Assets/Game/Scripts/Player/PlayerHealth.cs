@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Diperlukan untuk berpindah scene
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -43,8 +44,9 @@ public class PlayerHealth : MonoBehaviour
     private void UpdateHeartUI()
     {
         // Menghitung berapa hati yang harus aktif berdasarkan sisa darah
-        // Karena ada 6 hati (indeks 0 sampai 5)
         float healthPercentage = currentHealth / maxHealth;
+
+        // Diperbaiki dengan menambahkan tanda kali (*)
         int activeHearts = Mathf.CeilToInt(healthPercentage * heartImages.Length);
 
         for (int i = 0; i < heartImages.Length; i++)
@@ -60,9 +62,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+
     private void Die()
     {
         isDead = true;
         Debug.Log("PLAYER MATI!");
+
+        // Pindah ke scene GameOverScene saat nyawa habis
+        SceneManager.LoadScene("GameOverScene");
     }
 }
